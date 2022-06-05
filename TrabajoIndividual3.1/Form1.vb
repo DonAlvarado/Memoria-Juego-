@@ -1,4 +1,10 @@
-﻿Public Class Form1
+﻿Public Class Memoria
+
+    Dim seg As Integer
+    Dim min As Integer
+    Dim hrs As Integer
+    Dim pts As Integer
+
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles btnend.Click
         End
     End Sub
@@ -17,10 +23,32 @@
         random11.Visible = True
         random12.Visible = True
 
+
+        segundos.Enabled = False
+        minutos.Enabled = False
+        horas.Enabled = False
+
+        segundos.Stop()
+        minutos.Stop()
+        horas.Stop()
+
+        lblseg.Text = 0
+        lblmins.Text = 0
+        lblhrs.Text = 0
+
+        seg = 0
+        min = 0
+        hrs = 0
+
+
     End Sub
 
     Private Sub pera2_Click(sender As Object, e As EventArgs) Handles pera2.Click
         random1.Visible = True
+
+
+
+
     End Sub
 
     Private Sub random2_Click(sender As Object, e As EventArgs) Handles random2.Click
@@ -121,6 +149,42 @@
     End Sub
 
     Private Sub btniniciar_Click(sender As Object, e As EventArgs) Handles btniniciar.Click
+
+
+
+        lblseg.Text = seg
+        segundos.Enabled = True
+        segundos.Interval = 1000
+
+        lblmins.Text = min
+        minutos.Enabled = True
+        minutos.Interval = 10000
+
+        lblhrs.Text = hrs
+        horas.Enabled = True
+        horas.Interval = 100000
+
+
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles segundos.Tick
+
+        seg = seg + 1
+
+
+        lblmins.Text = min
+        lblseg.Text = seg
+        lblhrs.Text = hrs
+
+
+
+        If seg = 60 Then min = min + 1
+        If seg = 60 Then seg = 0
+
+        If min = 60 Then hrs = hrs + 1
+        If min = 60 Then min = 0
+
+
 
     End Sub
 End Class
